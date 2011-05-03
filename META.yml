@@ -1,0 +1,34 @@
+---
+abstract: 'simple policy asserting she bang line'
+author:
+  - 'Jonas B. Nielsen, <jonasbn@cpan.org>'
+build_requires: {}
+configure_requires:
+  Module::Build: 0.38
+dynamic_config: 1
+generated_by: 'Module::Build version 0.38, CPAN::Meta::Converter version 2.110580'
+license: artistic
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Perl-Critic-Policy-logicLAB-RequireSheBang
+provides:
+  Perl::Critic::Policy::logicLAB::RequireSheBang:
+    file: lib/Perl/Critic/Policy/logicLAB/RequireSheBang.pm
+    version: 0.01
+requires:
+  List::MoreUtils: 0
+  Perl::Critic: 0
+  Perl::Critic::Utils: 0
+  Readonly: 0
+  Test::More: 0
+  Test::Perl::Critic: 0
+resources:
+  bugtracker: http://rt.cpan.org/NoAuth/Bugs.html?Dist=Perl-Critic-logicLAB-Require-SheBang
+  homepage: http://logiclab.jira.com/wiki/display/PCPLRSB/Home
+  license: http://www.perlfoundation.org/artistic_license_1_0
+  repository: http://logicLAB.jira.com/svn/PCPLRSB
+  x_ProjectChangelog: http://logiclab.jira.com/browse/PCPLRSB#selectedTab=com.atlassian.jira.plugin.system.project%3Achangelog-panel
+  x_ProjectSite: http://logicLAB.jira.com/browse/PCPLRSB
+  x_ProjectWiki: http://logiclab.jira.com/wiki/display/PCPLRSB/Home
+version: 0.01
