@@ -1,5 +1,5 @@
 
-# $Id: test.t 7653 2011-05-03 08:39:38Z jonasbn $
+# $Id: test.t 7685 2011-05-16 20:22:30Z jonasbn $
 
 use strict;
 use warnings;
@@ -92,7 +92,7 @@ foreach (@lines) {
     my ($want_count, $str) = split /\t/;
     my @violations = $critic->critique( \$str );
     foreach (@violations) {
-        is( $_->description, q{she-bang line not confirming with requirement}, "statement: $str" );
+        is( $_->description, q{she-bang line not conforming with requirement}, "statement: $str" );
     }
     is( scalar @violations, $want_count, "$i: statement: $str" );
 

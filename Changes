@@ -1,0 +1,23 @@
+Changes file for Perl::Critic::Policy::logicLAB::RequireSheBang
+
+$Id: Changes 7683 2011-05-16 20:19:29Z jonasbn $
+
+Project change log:
+
+http://logiclab.jira.com/browse/PCPLRSB#selectedTab=com.atlassian.jira.plugin.system.project%3Achangelog-panel
+
+0.02, 2011.05.16, update recommended
+
+- Minor corrections to documentation [PCPLRSB-3]
+  http://logiclab.jira.com/browse/PCPLRSB-3
+  
+  Theme changed to logiclab from maintenance according to the guidelines, I
+  had previously overlooked this:
+  http://search.cpan.org/dist/Perl-Critic/lib/Perl/Critic/DEVELOPER.pod#Themes
+
+- Added Changes (this file)
+
+
+0.01, 2011.05.03
+
+- Initial release

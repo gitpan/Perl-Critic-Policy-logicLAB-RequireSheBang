@@ -3,10 +3,11 @@ NAME
     keeping your shebang line uniform
 
 AFFILIATION
-    This policy is a policy in the Perl::Critic::logicLAB distribution.
+    This policy is a policy in the Perl::Critic::logicLAB distribution. The
+    policy is themed: logiclab.
 
 VERSION
-    This documentation describes version 0.01.
+    This documentation describes version 0.02.
 
 DESCRIPTION
     This policy is intended in guarding your use of the shebang line. It
@@ -16,13 +17,16 @@ DESCRIPTION
     The default format is
 
         #!/usr/local/bin/perl
-
+    
     You can however specify another or define your own in the configuration
     of the policy.
 
+    NB this policy does currently not warn about missing shebang lines, it
+    only checks shebang lines encountered.
+
 CONFIGURATION AND ENVIRONMENT
     This policy allow you to configure the contents of the shebang lines you
-    want to allow using "formats".
+    want to allow using formats.
 
   formats
         [logicLAB::RequireSheBang]
@@ -31,7 +35,7 @@ CONFIGURATION AND ENVIRONMENT
     Since the default shebang line enforced by the policy is:
 
         #!/usr/local/bin/perl
-
+    
     Please note that if you however what to extend the pattern, you also
     have to specify was is normally the default pattern since configuration
     overwrites the default even for extensions.
@@ -43,24 +47,19 @@ CONFIGURATION AND ENVIRONMENT
         #!/usr/local/bin/perl -w
     
         #!/usr/local/bin/perl -wT
-
+        
     Your format should look like the following:
 
         [logicLAB::RequireSheBang]
         formats = #!/usr/local/bin/perl || #!/usr/local/bin/perl -w || #!/usr/local/bin/perl -wT
 
 DEPENDENCIES AND REQUIREMENTS
-    *   Perl::Critic
-
-    *   Perl::Critic::Utils
-
-    *   Readonly
-
-    *   Test::More
-
-    *   Test::Perl::Critic
-
-    *   List::MoreUtils
+    * Perl::Critic
+    * Perl::Critic::Utils
+    * Readonly
+    * Test::More
+    * Test::Perl::Critic
+    * List::MoreUtils
 
 INCOMPATIBILITIES
     This distribution has no known incompatibilities.
@@ -79,46 +78,40 @@ BUG REPORTING
 TEST AND QUALITY
     The following policies have been disabled for this distribution
 
-    *   Perl::Critic::Policy::ValuesAndExpressions::ProhibitConstantPragma
-
-    *   Perl::Critic::Policy::NamingConventions::Capitalization
+    * Perl::Critic::Policy::ValuesAndExpressions::ProhibitConstantPragma
+    * Perl::Critic::Policy::NamingConventions::Capitalization
 
     See also t/perlcriticrc
 
   TEST COVERAGE
     Coverage test executed the following way:
 
-        TEST_AUTHOR=1 TEST_CRITIC=1 TEST_VERBOSE=1 ./Build testcover
+        ./Build testcover
 
         ---------------------------- ------ ------ ------ ------ ------ ------ ------
         File                           stmt   bran   cond    sub    pod   time  total
         ---------------------------- ------ ------ ------ ------ ------ ------ ------
-        Build.PL                      100.0    n/a    n/a  100.0    n/a    0.0  100.0
-        ...ogicLAB/RequireSheBang.pm  100.0  100.0  100.0  100.0  100.0    0.0  100.0
-        t/critic.t                    100.0   75.0   33.3  100.0    n/a   25.0   92.1
-        t/implementation.t            100.0    n/a    n/a  100.0    n/a   25.0  100.0
-        t/prerequisites.t              94.7   83.3    n/a  100.0    n/a   25.0   93.1
-        t/test.t                       94.9   25.0    n/a  100.0    n/a   25.0   91.0
-        Total                          97.5   72.2   66.7  100.0  100.0  100.0   95.0
+        ...ogicLAB/RequireSheBang.pm  100.0  100.0   66.7  100.0  100.0  100.0   98.4
+        Total                         100.0  100.0   66.7  100.0  100.0  100.0   98.4
         ---------------------------- ------ ------ ------ ------ ------ ------ ------
 
 SEE ALSO
-    *   Perl::Critic
-
-    *   <http://perldoc.perl.org/perlrun.html>
-
-    *   <http://logiclab.jira.com/wiki/display/OPEN/Development#Development-
-        MakeyourComponentsEnvironmentAgnostic>
-
-    *   <http://logiclab.jira.com/wiki/display/PCPLRSB/Home>
-
-    *   <http://logiclab.jira.com/wiki/display/PCLL/Home>
+    * Perl::Critic
+    * http://perldoc.perl.org/perlrun.html
+    *
+    http://logiclab.jira.com/wiki/display/OPEN/Development#Development-Makey
+    ourComponentsEnvironmentAgnostic
+    * http://logiclab.jira.com/wiki/display/PCPLRSB/Home
+    * http://logiclab.jira.com/wiki/display/PCLL/Home
 
 AUTHOR
-    *   Jonas B. Nielsen, jonasbn "<jonasbn@cpan.org>"
+    * Jonas B. Nielsen, jonasbn `<jonasbn@cpan.org>'
+
+ACKNOWLEDGEMENT
+    * Erik Johansen (uniejo), feedback to version 0.01
 
 LICENSE AND COPYRIGHT
-    Copyright (c) 2011 Jonas B. Nielsen. All rights reserved.
+    Copyright (c) 2011 Jonas B. Nielsen, jonasbn. All rights reserved.
 
     This program is free software; you can redistribute it and/or modify it
     under the same terms as Perl itself.

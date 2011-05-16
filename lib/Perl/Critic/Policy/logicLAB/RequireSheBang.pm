@@ -1,6 +1,6 @@
 package Perl::Critic::Policy::logicLAB::RequireSheBang;
 
-# $Id: RequireSheBang.pm 7655 2011-05-03 09:15:49Z jonasbn $
+# $Id: RequireSheBang.pm 7686 2011-05-16 20:24:20Z jonasbn $
 
 use strict;
 use warnings;
@@ -8,12 +8,12 @@ use base 'Perl::Critic::Policy';
 use Perl::Critic::Utils qw{ $SEVERITY_MEDIUM :booleans };
 use List::MoreUtils qw(none);
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 Readonly::Scalar my $EXPL => q{she-bang line should adhere to requirement};
 
 use constant default_severity     => $SEVERITY_MEDIUM;
-use constant default_themes       => qw(maintenance);
+use constant default_themes       => qw(logiclab);
 use constant supported_parameters => qw(formats);
 
 sub applies_to {
@@ -35,7 +35,7 @@ sub violates {
 
     if ( $shebang && none { ($elem) eq $_ } @{ $self->{_formats} } ) {
         return $self->violation(
-            q{she-bang line not confirming with requirement},
+            q{she-bang line not conforming with requirement},
             $EXPL, $elem );
     }
 
@@ -79,11 +79,12 @@ Perl::Critic::Policy::logicLAB::RequireSheBang - simple policy for keeping your 
 
 =head1 AFFILIATION 
 
-This policy is a policy in the Perl::Critic::logicLAB distribution.
+This policy is a policy in the Perl::Critic::logicLAB distribution. The policy
+is themed: logiclab.
 
 =head1 VERSION
 
-This documentation describes version 0.01.
+This documentation describes version 0.02.
 
 =head1 DESCRIPTION
 
@@ -96,6 +97,9 @@ The default format is
     
 You can however specify another or define your own in the configuration of the
 policy.
+
+B<NB> this policy does currently not warn about missing shebang lines, it only
+checks shebang lines encountered.
 
 =head1 CONFIGURATION AND ENVIRONMENT
 
@@ -180,18 +184,13 @@ See also F<t/perlcriticrc>
 
 Coverage test executed the following way:
 
-    TEST_AUTHOR=1 TEST_CRITIC=1 TEST_VERBOSE=1 ./Build testcover
+    ./Build testcover
 
     ---------------------------- ------ ------ ------ ------ ------ ------ ------
     File                           stmt   bran   cond    sub    pod   time  total
     ---------------------------- ------ ------ ------ ------ ------ ------ ------
-    Build.PL                      100.0    n/a    n/a  100.0    n/a    0.0  100.0
-    ...ogicLAB/RequireSheBang.pm  100.0  100.0  100.0  100.0  100.0    0.0  100.0
-    t/critic.t                    100.0   75.0   33.3  100.0    n/a   25.0   92.1
-    t/implementation.t            100.0    n/a    n/a  100.0    n/a   25.0  100.0
-    t/prerequisites.t              94.7   83.3    n/a  100.0    n/a   25.0   93.1
-    t/test.t                       94.9   25.0    n/a  100.0    n/a   25.0   91.0
-    Total                          97.5   72.2   66.7  100.0  100.0  100.0   95.0
+    ...ogicLAB/RequireSheBang.pm  100.0  100.0   66.7  100.0  100.0  100.0   98.4
+    Total                         100.0  100.0   66.7  100.0  100.0  100.0   98.4
     ---------------------------- ------ ------ ------ ------ ------ ------ ------
 
 =head1 SEE ALSO
@@ -218,9 +217,17 @@ Coverage test executed the following way:
 
 =back
 
+=head1 ACKNOWLEDGEMENT
+
+=over
+
+=item * Erik Johansen (uniejo), feedback to version 0.01
+
+=back 
+
 =head1 LICENSE AND COPYRIGHT
 
-Copyright (c) 2011 Jonas B. Nielsen. All rights reserved.
+Copyright (c) 2011 Jonas B. Nielsen, jonasbn. All rights reserved.
 
 This program is free software; you can redistribute it and/or modify it under the 
 same terms as Perl itself.
