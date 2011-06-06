@@ -9,6 +9,8 @@ README
 t/critic.t
 t/example.conf
 t/implementation.t
+t/PCPLRSB-6.conf
+t/PCPLRSB-6.t
 t/perlcriticrc
 t/prerequisites.t
 t/test.t

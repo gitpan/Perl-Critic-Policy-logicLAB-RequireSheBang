@@ -17,7 +17,7 @@ DESCRIPTION
     The default format is
 
         #!/usr/local/bin/perl
-    
+
     You can however specify another or define your own in the configuration
     of the policy.
 
@@ -26,7 +26,7 @@ DESCRIPTION
 
 CONFIGURATION AND ENVIRONMENT
     This policy allow you to configure the contents of the shebang lines you
-    want to allow using formats.
+    want to allow using "formats".
 
   formats
         [logicLAB::RequireSheBang]
@@ -35,7 +35,7 @@ CONFIGURATION AND ENVIRONMENT
     Since the default shebang line enforced by the policy is:
 
         #!/usr/local/bin/perl
-    
+
     Please note that if you however what to extend the pattern, you also
     have to specify was is normally the default pattern since configuration
     overwrites the default even for extensions.
@@ -47,19 +47,24 @@ CONFIGURATION AND ENVIRONMENT
         #!/usr/local/bin/perl -w
     
         #!/usr/local/bin/perl -wT
-        
+
     Your format should look like the following:
 
         [logicLAB::RequireSheBang]
         formats = #!/usr/local/bin/perl || #!/usr/local/bin/perl -w || #!/usr/local/bin/perl -wT
 
 DEPENDENCIES AND REQUIREMENTS
-    * Perl::Critic
-    * Perl::Critic::Utils
-    * Readonly
-    * Test::More
-    * Test::Perl::Critic
-    * List::MoreUtils
+    *   Perl::Critic
+
+    *   Perl::Critic::Utils
+
+    *   Readonly
+
+    *   Test::More
+
+    *   Test::Perl::Critic
+
+    *   List::MoreUtils
 
 INCOMPATIBILITIES
     This distribution has no known incompatibilities.
@@ -78,8 +83,9 @@ BUG REPORTING
 TEST AND QUALITY
     The following policies have been disabled for this distribution
 
-    * Perl::Critic::Policy::ValuesAndExpressions::ProhibitConstantPragma
-    * Perl::Critic::Policy::NamingConventions::Capitalization
+    *   Perl::Critic::Policy::ValuesAndExpressions::ProhibitConstantPragma
+
+    *   Perl::Critic::Policy::NamingConventions::Capitalization
 
     See also t/perlcriticrc
 
@@ -96,19 +102,22 @@ TEST AND QUALITY
         ---------------------------- ------ ------ ------ ------ ------ ------ ------
 
 SEE ALSO
-    * Perl::Critic
-    * http://perldoc.perl.org/perlrun.html
-    *
-    http://logiclab.jira.com/wiki/display/OPEN/Development#Development-Makey
-    ourComponentsEnvironmentAgnostic
-    * http://logiclab.jira.com/wiki/display/PCPLRSB/Home
-    * http://logiclab.jira.com/wiki/display/PCLL/Home
+    *   Perl::Critic
+
+    *   <http://perldoc.perl.org/perlrun.html>
+
+    *   <http://logiclab.jira.com/wiki/display/OPEN/Development#Development-
+        MakeyourComponentsEnvironmentAgnostic>
+
+    *   <http://logiclab.jira.com/wiki/display/PCPLRSB/Home>
+
+    *   <http://logiclab.jira.com/wiki/display/PCLL/Home>
 
 AUTHOR
-    * Jonas B. Nielsen, jonasbn `<jonasbn@cpan.org>'
+    *   Jonas B. Nielsen, jonasbn "<jonasbn@cpan.org>"
 
 ACKNOWLEDGEMENT
-    * Erik Johansen (uniejo), feedback to version 0.01
+    *   Erik Johansen (uniejo), feedback to version 0.01
 
 LICENSE AND COPYRIGHT
     Copyright (c) 2011 Jonas B. Nielsen, jonasbn. All rights reserved.
