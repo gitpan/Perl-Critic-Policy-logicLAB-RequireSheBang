@@ -11,6 +11,8 @@ t/example.conf
 t/implementation.t
 t/PCPLRSB-6.conf
 t/PCPLRSB-6.t
+t/PCPLRSB-9.conf
+t/PCPLRSB-9.t
 t/perlcriticrc
 t/prerequisites.t
 t/test.t

@@ -4,7 +4,7 @@
       "Jonas B. Nielsen, <jonasbn@cpan.org>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.110580",
+   "generated_by" : "Module::Build version 0.4005, CPAN::Meta::Converter version 2.131560",
    "license" : [
       "artistic_1"
    ],
@@ -16,24 +16,24 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "Module::Build" : "0.38"
+            "Module::Build" : "0.40"
          }
       },
       "runtime" : {
          "requires" : {
-            "List::MoreUtils" : 0,
-            "Perl::Critic" : 0,
-            "Perl::Critic::Utils" : 0,
-            "Readonly" : 0,
-            "Test::More" : 0,
-            "Test::Perl::Critic" : 0
+            "List::MoreUtils" : "0",
+            "Perl::Critic" : "0",
+            "Perl::Critic::Utils" : "0",
+            "Readonly" : "0",
+            "Test::More" : "0",
+            "Test::Perl::Critic" : "0"
          }
       }
    },
    "provides" : {
       "Perl::Critic::Policy::logicLAB::RequireSheBang" : {
          "file" : "lib/Perl/Critic/Policy/logicLAB/RequireSheBang.pm",
-         "version" : "0.03"
+         "version" : "0.04"
       }
    },
    "release_status" : "stable",
@@ -52,5 +52,5 @@
       "x_ProjectSite" : "http://logicLAB.jira.com/browse/PCPLRSB",
       "x_ProjectWiki" : "http://logiclab.jira.com/wiki/display/PCPLRSB/Home"
    },
-   "version" : "0.03"
+   "version" : "0.04"
 }

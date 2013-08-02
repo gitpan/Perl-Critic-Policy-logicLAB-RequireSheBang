@@ -7,7 +7,7 @@ AFFILIATION
     policy is themed: logiclab.
 
 VERSION
-    This documentation describes version 0.02.
+    This documentation describes version 0.03.
 
 DESCRIPTION
     This policy is intended in guarding your use of the shebang line. It
@@ -53,6 +53,16 @@ CONFIGURATION AND ENVIRONMENT
         [logicLAB::RequireSheBang]
         formats = #!/usr/local/bin/perl || #!/usr/local/bin/perl -w || #!/usr/local/bin/perl -wT
 
+  debug
+    Optionally and for development purposes I have added a debug flag. This
+    can be set in your Perl::Critic configuration file as follows:
+
+        [logicLAB::RequireSheBang]
+        debug = 1
+
+    This enables more explicit output on what is going on during the actual
+    processing of the policy.
+
 DEPENDENCIES AND REQUIREMENTS
     *   Perl::Critic
 
@@ -87,19 +97,22 @@ TEST AND QUALITY
 
     *   Perl::Critic::Policy::NamingConventions::Capitalization
 
+    *   Data::Dumper
+
     See also t/perlcriticrc
 
   TEST COVERAGE
-    Coverage test executed the following way:
+    Coverage test executed the following way, the coverage report is based
+    on the version described in this documentation (see "VERSION").
 
         ./Build testcover
 
-        ---------------------------- ------ ------ ------ ------ ------ ------ ------
-        File                           stmt   bran   cond    sub    pod   time  total
-        ---------------------------- ------ ------ ------ ------ ------ ------ ------
-        ...ogicLAB/RequireSheBang.pm  100.0  100.0   66.7  100.0  100.0  100.0   98.4
-        Total                         100.0  100.0   66.7  100.0  100.0  100.0   98.4
-        ---------------------------- ------ ------ ------ ------ ------ ------ ------
+            ---------------------------- ------ ------ ------ ------ ------ ------ ------
+            File                           stmt   bran   cond    sub    pod   time  total
+            ---------------------------- ------ ------ ------ ------ ------ ------ ------
+            ...ogicLAB/RequireSheBang.pm   70.4   64.3   44.4  100.0  100.0  100.0   72.1
+            Total                          70.4   64.3   44.4  100.0  100.0  100.0   72.1
+            ---------------------------- ------ ------ ------ ------ ------ ------ ------
 
 SEE ALSO
     *   Perl::Critic
