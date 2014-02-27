@@ -1,5 +1,5 @@
 
-# $Id: PCPLRSB-6.t 7700 2011-06-06 19:25:56Z jonasbn $
+# $Id$
 
 use strict;
 use warnings;

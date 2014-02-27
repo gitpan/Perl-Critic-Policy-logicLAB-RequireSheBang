@@ -1,10 +1,34 @@
 Changes file for Perl::Critic::Policy::logicLAB::RequireSheBang
 
-$Id: Changes 8192 2013-08-02 08:40:15Z jonasbn $
+$Id$
 
 Project change log:
 
 http://logiclab.jira.com/browse/PCPLRSB#selectedTab=com.atlassian.jira.plugin.system.project%3Achangelog-panel
+
+0.05 2014-02-27
+
+- Maintenance release, update not necessary
+
+- Specified Module::Build 0.40 requirement as hinted by Module::Build
+
+- Specified Perl version 5.8.0 in Build.PL
+
+- Added new feature: exemption from package as a configurable parameter
+  This feature makes it possible to avoid the check from package files
+  [PCPLRSB-5]
+
+  https://logiclab.jira.com/browse/PCPLRSB-5
+
+- Added kwalitee.t implementing Test::Kwalitee tests [PCPLRSB-12]
+
+  https://logiclab.jira.com/browse/PCPLRSB-12
+
+- Added changes.t automatic assertion of the integrity of the Changes file,
+  see also PCPLRSB-10 [PCPLRSB-11]
+
+  https://logiclab.jira.com/browse/PCPLRSB-11
+
 
 0.04 2013-08-02
 
@@ -15,15 +39,15 @@ http://logiclab.jira.com/browse/PCPLRSB#selectedTab=com.atlassian.jira.plugin.sy
 
   Quest: http://questhub.io/realm/perl/quest/51f0fd8e18ba7dcf4b000040
   Spec: https://metacpan.org/module/CPAN::Changes::Spec
-  
+
   https://logiclab.jira.com/browse/PCPLRSB-10
-  
-- Minor improvement/correction to the central regular expression [PCPLRSB-9
-  
-  https://logiclab.jira.com/browse/PCPLRSB-9]
+
+- Minor improvement/correction to the central regular expression [PCPLRSB-9]
+
+  https://logiclab.jira.com/browse/PCPLRSB-9
 
 - Added a debugging flag [PCPLRSB-8]
-  
+
   https://logiclab.jira.com/browse/PCPLRSB-8
 
 
@@ -41,7 +65,7 @@ http://logiclab.jira.com/browse/PCPLRSB#selectedTab=com.atlassian.jira.plugin.sy
 
 - Minor corrections to documentation [PCPLRSB-3]
   http://logiclab.jira.com/browse/PCPLRSB-3
-  
+
   Theme changed to logiclab from maintenance according to the guidelines, I
   had previously overlooked this:
   http://search.cpan.org/dist/Perl-Critic/lib/Perl/Critic/DEVELOPER.pod#Themes
@@ -49,6 +73,6 @@ http://logiclab.jira.com/browse/PCPLRSB#selectedTab=com.atlassian.jira.plugin.sy
 - Added Changes (this file)
 
 
-0.01 2011.05.03
+0.01 2011-05-03
 
 - Initial release

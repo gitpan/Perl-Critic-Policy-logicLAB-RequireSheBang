@@ -1,6 +1,6 @@
 # Build.PL for Perl::Critic::Policy::logicLAB::RequireSheBang
 
-# $Id: Build.PL 7636 2011-05-01 15:24:04Z jonasbn $
+# $Id$
 
 use strict;
 use Module::Build;
@@ -13,6 +13,7 @@ my $build = Module::Build->new(
     create_makefile_pl   => 'traditional',
     create_readme        => 1,
     dist_abstract        => q[simple policy asserting she bang line],
+    configure_requires => { 'Module::Build' => 0.40 },
     requires => {
         'Perl::Critic'        => '0',
         'Perl::Critic::Utils' => '0',
@@ -20,12 +21,13 @@ my $build = Module::Build->new(
         'Test::More'          => '0',
         'Test::Perl::Critic'  => '0',
         'List::MoreUtils'     => '0',
+        'perl'                => '5.8.0',
     },
     meta_merge => {
         resources => {
             homepage => 'http://logiclab.jira.com/wiki/display/PCPLRSB/Home',
-            bugtracker => 'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Perl-Critic-logicLAB-Require-SheBang',
-            repository => 'http://logicLAB.jira.com/svn/PCPLRSB',
+            bugtracker => 'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Perl-Critic-Policy-logicLAB-Require-SheBang',
+            repository => 'https://github.com/jonasbn/pcplrsb',
             ProjectChangelog =>
                 'http://logiclab.jira.com/browse/PCPLRSB#selectedTab=com.atlassian.jira.plugin.system.project%3Achangelog-panel',
             ProjectSite => 'http://logicLAB.jira.com/browse/PCPLRSB',

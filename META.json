@@ -4,7 +4,7 @@
       "Jonas B. Nielsen, <jonasbn@cpan.org>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.4005, CPAN::Meta::Converter version 2.131560",
+   "generated_by" : "Module::Build version 0.4005, CPAN::Meta::Converter version 2.132830",
    "license" : [
       "artistic_1"
    ],
@@ -16,7 +16,7 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "Module::Build" : "0.40"
+            "Module::Build" : "0.4"
          }
       },
       "runtime" : {
@@ -26,31 +26,32 @@
             "Perl::Critic::Utils" : "0",
             "Readonly" : "0",
             "Test::More" : "0",
-            "Test::Perl::Critic" : "0"
+            "Test::Perl::Critic" : "0",
+            "perl" : "v5.8.0"
          }
       }
    },
    "provides" : {
       "Perl::Critic::Policy::logicLAB::RequireSheBang" : {
          "file" : "lib/Perl/Critic/Policy/logicLAB/RequireSheBang.pm",
-         "version" : "0.04"
+         "version" : "0.05"
       }
    },
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "http://rt.cpan.org/NoAuth/Bugs.html?Dist=Perl-Critic-logicLAB-Require-SheBang"
+         "web" : "http://rt.cpan.org/NoAuth/Bugs.html?Dist=Perl-Critic-Policy-logicLAB-Require-SheBang"
       },
       "homepage" : "http://logiclab.jira.com/wiki/display/PCPLRSB/Home",
       "license" : [
          "http://www.perlfoundation.org/artistic_license_1_0"
       ],
       "repository" : {
-         "url" : "http://logicLAB.jira.com/svn/PCPLRSB"
+         "url" : "https://github.com/jonasbn/pcplrsb"
       },
       "x_ProjectChangelog" : "http://logiclab.jira.com/browse/PCPLRSB#selectedTab=com.atlassian.jira.plugin.system.project%3Achangelog-panel",
       "x_ProjectSite" : "http://logicLAB.jira.com/browse/PCPLRSB",
       "x_ProjectWiki" : "http://logiclab.jira.com/wiki/display/PCPLRSB/Home"
    },
-   "version" : "0.04"
+   "version" : "0.05"
 }

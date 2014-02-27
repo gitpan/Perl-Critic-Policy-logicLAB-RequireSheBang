@@ -7,7 +7,7 @@ AFFILIATION
     policy is themed: logiclab.
 
 VERSION
-    This documentation describes version 0.03.
+    This documentation describes version 0.05.
 
 DESCRIPTION
     This policy is intended in guarding your use of the shebang line. It
@@ -45,13 +45,20 @@ CONFIGURATION AND ENVIRONMENT
         #!/usr/local/bin/perl
 
         #!/usr/local/bin/perl -w
-    
+
         #!/usr/local/bin/perl -wT
 
     Your format should look like the following:
 
         [logicLAB::RequireSheBang]
         formats = #!/usr/local/bin/perl || #!/usr/local/bin/perl -w || #!/usr/local/bin/perl -wT
+
+  exempt_modules
+    You can specify if you want to check modules also. The default is to
+    exempt from checking shebang lines in modules.
+
+            [logicLAB::RequireSheBang]
+            exempt_modules = 0
 
   debug
     Optionally and for development purposes I have added a debug flag. This
@@ -83,17 +90,23 @@ BUGS AND LIMITATIONS
     The distribution has now known bugs or limitations. It locates shebang
     lines through out the source code, not limiting itself to the first
     line. This might however change in the future, but will propably be made
-    configurable is possible.
+    configurable if possible.
 
 BUG REPORTING
     Please use Requets Tracker for bug reporting:
 
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Perl-Critic-logicLAB-RequireSheBang
+    *   <http://rt.cpan.org/NoAuth/Bugs.html?Dist=Perl-Critic-logicLAB-Requi
+        reSheBang>
 
 TEST AND QUALITY
     The following policies have been disabled for this distribution
 
     *   Perl::Critic::Policy::ValuesAndExpressions::ProhibitConstantPragma
+
+        Constants are good, - see the link below.
+
+        *   <https://logiclab.jira.com/wiki/display/OPEN/Perl-Critic-Policy-
+            ValuesAndExpressions-ProhibitConstantPragma>
 
     *   Perl::Critic::Policy::NamingConventions::Capitalization
 
@@ -133,7 +146,7 @@ ACKNOWLEDGEMENT
     *   Erik Johansen (uniejo), feedback to version 0.01
 
 LICENSE AND COPYRIGHT
-    Copyright (c) 2011 Jonas B. Nielsen, jonasbn. All rights reserved.
+    Copyright (c) 2011-2014 Jonas B. Nielsen, jonasbn. All rights reserved.
 
     This program is free software; you can redistribute it and/or modify it
     under the same terms as Perl itself.

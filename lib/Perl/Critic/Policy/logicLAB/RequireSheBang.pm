@@ -1,6 +1,6 @@
 package Perl::Critic::Policy::logicLAB::RequireSheBang;
 
-# $Id: RequireSheBang.pm 8192 2013-08-02 08:40:15Z jonasbn $
+# $Id$
 
 use strict;
 use warnings;
@@ -11,7 +11,7 @@ use Data::Dumper;
 
 $Data::Dumper::Useqq = 1;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 Readonly::Scalar my $EXPL  => q{she-bang line should adhere to requirement};
 Readonly::Scalar my $DEBUG => q{DEBUG logicLAB::RequireSheBang};
@@ -20,26 +20,35 @@ use constant default_severity     => $SEVERITY_MEDIUM;
 use constant default_themes       => qw(logiclab);
 use constant supported_parameters => qw(formats debug);
 
-sub applies_to {
-    return (
-        qw(
-            PPI::Token::Comment
-            )
-    );
+sub prepare_to_scan_document {
+    my ( $self, $document ) = @_;
+ 	if ($self->{exempt_modules} && $document->is_module()) {
+		return 0;
+	}
+
+    return $document->is_program();
 }
 
 sub violates {
-    my ( $self, $elem, $doc ) = @_;
-    
+    my ( $self, $element, $doc ) = @_;
+
+	my $statement = $doc->find_first( 'PPI::Token::Comment' );
+
+	if (not $statement->location()->[0]) {
+        return $self->violation(
+            q{she-bang line not located as first line},
+            $EXPL, $statement );
+	}
+
     if ( $self->{debug} ) {
-        print {*STDERR} "$DEBUG: we got element:\n";
-        print {*STDERR} Dumper $elem;
+        print {*STDERR} "$DEBUG: we got statement:\n";
+        print {*STDERR} Dumper $statement;
     }
 
-    my ( $shebang, $cli ) = $elem =~ m{
+    my ( $shebang, $cli ) = $element =~ m{
             \A  #beginning of string
             (\#!) #actual she-bang
-            #([^\r\n]*?) #the path and possible flags, note the space character
+            #([^\r\n]*?) #the path and possible flags
             ([/\-\w ]+?) #the path and possible flags, note the space character
             \s* #possible left over whitespace (PPI?)
             \Z #indication of end of string to assist above capture
@@ -57,7 +66,7 @@ sub violates {
         print {*STDERR} '>' . $shebang . $cli . "<\n";
 
         print {*STDERR} "$DEBUG: comparing against formats:\n";
-        print {*STDERR} @{ $self->{_formats} };
+        print {*STDERR} Dumper $self->{_formats};
         print {*STDERR} "\n";
 
     } elsif ( $self->{debug} ) {
@@ -75,7 +84,7 @@ sub violates {
 
         return $self->violation(
             q{she-bang line not conforming with requirement},
-            $EXPL, $elem );
+            $EXPL, $element );
     }
 
     return;
@@ -96,9 +105,12 @@ sub initialize_if_enabled {
         $self->{_formats} = $self->_parse_formats($formats);
     }
 
-    #Debug
-    #Setting the default
-    $self->{debug} = $config->get('debug');
+    #debug
+    $self->{debug} = $config->get('debug') || 0;
+
+    #exempt_modules
+    $self->{exempt_modules} = $config->get('exempt_modules') || 1;
+
 
     return $TRUE;
 }
@@ -121,14 +133,14 @@ __END__
 
 Perl::Critic::Policy::logicLAB::RequireSheBang - simple policy for keeping your shebang line uniform
 
-=head1 AFFILIATION 
+=head1 AFFILIATION
 
 This policy is a policy in the Perl::Critic::logicLAB distribution. The policy
 is themed: logiclab.
 
 =head1 VERSION
 
-This documentation describes version 0.03.
+This documentation describes version 0.05.
 
 =head1 DESCRIPTION
 
@@ -138,7 +150,7 @@ in making sure that your shebang line adheres to certain formats.
 The default format is
 
     #!/usr/local/bin/perl
-    
+
 You can however specify another or define your own in the configuration of the
 policy.
 
@@ -147,7 +159,7 @@ checks shebang lines encountered.
 
 =head1 CONFIGURATION AND ENVIRONMENT
 
-This policy allow you to configure the contents of the shebang lines you 
+This policy allow you to configure the contents of the shebang lines you
 want to allow using L</formats>.
 
 =head2 formats
@@ -158,9 +170,9 @@ want to allow using L</formats>.
 Since the default shebang line enforced by the policy is:
 
     #!/usr/local/bin/perl
-    
-Please note that if you however what to extend the pattern, you also have 
-to specify was is normally the default pattern since configuration 
+
+Please note that if you however what to extend the pattern, you also have
+to specify was is normally the default pattern since configuration
 overwrites the default even for extensions.
 
 This mean that if you want to allow:
@@ -168,23 +180,31 @@ This mean that if you want to allow:
     #!/usr/local/bin/perl
 
     #!/usr/local/bin/perl -w
-    
+
     #!/usr/local/bin/perl -wT
-        
+
 Your format should look like the following:
 
     [logicLAB::RequireSheBang]
     formats = #!/usr/local/bin/perl || #!/usr/local/bin/perl -w || #!/usr/local/bin/perl -wT
 
+=head2 exempt_modules
+
+You can specify if you want to check modules also. The default is to exempt from checking
+shebang lines in modules.
+
+	[logicLAB::RequireSheBang]
+	exempt_modules = 0
+
 =head2 debug
 
-Optionally and for development purposes I have added a debug flag. This can be set in 
+Optionally and for development purposes I have added a debug flag. This can be set in
 your L<Perl::Critic> configuration file as follows:
 
     [logicLAB::RequireSheBang]
     debug = 1
 
-This enables more explicit output on what is going on during the actual processing of 
+This enables more explicit output on what is going on during the actual processing of
 the policy.
 
 =head1 DEPENDENCIES AND REQUIREMENTS
@@ -211,15 +231,19 @@ This distribution has no known incompatibilities.
 
 =head1 BUGS AND LIMITATIONS
 
-The distribution has now known bugs or limitations. It locates shebang lines 
-through out the source code, not limiting itself to the first line. This might 
-however change in the future, but will propably be made configurable is possible.
+The distribution has now known bugs or limitations. It locates shebang lines
+through out the source code, not limiting itself to the first line. This might
+however change in the future, but will propably be made configurable if possible.
 
 =head1 BUG REPORTING
 
 Please use Requets Tracker for bug reporting:
 
-    http://rt.cpan.org/NoAuth/Bugs.html?Dist=Perl-Critic-logicLAB-RequireSheBang
+=over
+
+=item * L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Perl-Critic-logicLAB-RequireSheBang>
+
+=back
 
 =head1 TEST AND QUALITY
 
@@ -228,6 +252,14 @@ The following policies have been disabled for this distribution
 =over
 
 =item * L<Perl::Critic::Policy::ValuesAndExpressions::ProhibitConstantPragma>
+
+Constants are good, - see the link below.
+
+=over
+
+=item * L<https://logiclab.jira.com/wiki/display/OPEN/Perl-Critic-Policy-ValuesAndExpressions-ProhibitConstantPragma>
+
+=back
 
 =item * L<Perl::Critic::Policy::NamingConventions::Capitalization>
 
@@ -239,7 +271,7 @@ See also F<t/perlcriticrc>
 
 =head2 TEST COVERAGE
 
-Coverage test executed the following way, the coverage report is based on the 
+Coverage test executed the following way, the coverage report is based on the
 version described in this documentation (see L</VERSION>).
 
     ./Build testcover
@@ -281,13 +313,13 @@ version described in this documentation (see L</VERSION>).
 
 =item * Erik Johansen (uniejo), feedback to version 0.01
 
-=back 
+=back
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright (c) 2011 Jonas B. Nielsen, jonasbn. All rights reserved.
+Copyright (c) 2011-2014 Jonas B. Nielsen, jonasbn. All rights reserved.
 
-This program is free software; you can redistribute it and/or modify it under the 
+This program is free software; you can redistribute it and/or modify it under the
 same terms as Perl itself.
 
 =cut
