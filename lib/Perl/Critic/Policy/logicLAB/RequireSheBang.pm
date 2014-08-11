@@ -8,10 +8,11 @@ use base 'Perl::Critic::Policy';
 use Perl::Critic::Utils qw{ $SEVERITY_MEDIUM :booleans };
 use List::MoreUtils qw(none);
 use Data::Dumper;
+use 5.008;
 
 $Data::Dumper::Useqq = 1;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 Readonly::Scalar my $EXPL  => q{she-bang line should adhere to requirement};
 Readonly::Scalar my $DEBUG => q{DEBUG logicLAB::RequireSheBang};
